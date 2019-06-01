@@ -18,15 +18,13 @@ class App extends Component{
   componentDidMount(){
     console.log(window.location)
     const id = window.location.pathname
-    if(id !== "/"){
-      axios.get(`/api/encurtador/get/3f40b3`).then(res => {
+    // if(id !== "/"){
+      axios.get(`https://enc-it.herokuapp.com/api/encurtador/get/3f40b3`).then(res => {
         console.log(res.data)
-        debugger
-        // window.location.href = res.data.urlOriginal
         
       })
       .catch(erro => console.log('Erro --> ', erro))
-    }
+    // }
     }
 
   handleSearch = (e) => {
