@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
   var allowedOrigins = ['https://enc-it.firebaseapp.com', 'http://localhost:3000']
-  var origin = req.header.origin
+  var origin = req.headers.origin
   if(allowedOrigins.indexOf(origin) > -1){
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
