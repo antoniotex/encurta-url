@@ -14,7 +14,11 @@ const EncurtadorSchema = new Schema({
   urlEncurtada: {
     type: String,
     required: true
-  }
+  },
+  data: {
+      type: Date,
+      default: Date.now
+  },
 })
 
 module.exports = Encurtador = mongoose.model('encurtador', EncurtadorSchema)

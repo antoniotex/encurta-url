@@ -1,4 +1,5 @@
 const express = require('express')
+const crypto = require('crypto')
 
 const router = express.Router()
 
@@ -10,11 +11,14 @@ router.get('/', function(req, res){
 })
 
 router.post('/', function(req, res){
-  console.log(req.body)
+
+  const apelido = crypto.randomBytes(3).toString('hex');
+  urlEncurtada = `enc.it/${req.body.apelido ? req.body.apelido : apelido}`
+
   const novoItem = new Encurtador({
     urlOriginal: req.body.urlOriginal,
-    apelido: req.body.apelido,
-    urlEncurtada: req.body.urlEncurtada
+    apelido: req.body.apelido ? req.body.apelido : apelido,
+    urlEncurtada: urlEncurtada
   })
   novoItem.save().then(function(item){
     res.json(item)
