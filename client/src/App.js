@@ -59,7 +59,7 @@ class App extends Component{
           <input type="text" name="urlOriginal" onInput={this.handleSearch} placeholder="Digite ou cole sua URL aqui..."/>
           <Button onClick={this.criaNovaUrl} color="success">Encurtar!</Button>
           {dados.urlEncurtada && <Alert color="success">
-            { `Parabéns, aqui está sua URL encurtada: `}<a href={dados.urlEncurtada}>{dados.urlEncurtada}</a>
+            { `Parabéns, aqui está sua URL encurtada: `}<a href={`https://${dados.urlEncurtada}`}>{dados.urlEncurtada}</a>
           </Alert>}
         </section>
       </div>
