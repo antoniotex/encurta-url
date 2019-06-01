@@ -22,7 +22,7 @@ class App extends Component{
       axios.get(`/api/encurtador/get${id}`).then(res => {
         console.log(res.data.urlOriginal)
         debugger
-        window.location.href = res.data.urlOriginal
+        // window.location.href = res.data.urlOriginal
         
       })
       .catch(erro => console.log('Erro --> ', erro))
