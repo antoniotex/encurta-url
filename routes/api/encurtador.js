@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 router.get('/get/:apelido', function(req, res){
   Encurtador.findOne({ apelido:  req.params.apelido}, (error, item) => {
     if(error){
-      res.send(error)
+      res.json({erro: error})
       return
     }
     res.json(item)
