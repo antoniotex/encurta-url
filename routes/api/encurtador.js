@@ -10,10 +10,16 @@ router.get('/', function(req, res){
    .then(dadosURL => res.json(dadosURL))
 })
 
+router.get('/get/:apelido', function(req, res){
+  Encurtador.findOne({ apelido:  req.params.apelido}, (error, item) => {
+    res.json(item)
+  })
+})
+
 router.post('/', function(req, res){
 
   const apelido = crypto.randomBytes(3).toString('hex');
-  urlEncurtada = `enc.it/${req.body.apelido ? req.body.apelido : apelido}`
+  urlEncurtada = `https://enc-it.herokuapp.com/${req.body.apelido ? req.body.apelido : apelido}`
 
   const novoItem = new Encurtador({
     urlOriginal: req.body.urlOriginal,

@@ -7,13 +7,25 @@ import { Alert } from 'reactstrap'
 
 
 class App extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       novoPost: {},
       novosDados: {}
     }
   }
+
+  componentWillMount(){
+    window.stop()
+    const id = window.location.pathname
+    if(id !== '/'){
+      axios.get(`/api/encurtador/get${id}`).then(res => {
+        window.location.replace(res.data.urlOriginal)
+        
+      })
+      .catch(erro => console.log('Erro --> ', erro))
+    }
+    }
 
   handleSearch = (e) => {
     const value = e.target.value
