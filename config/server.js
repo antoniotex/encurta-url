@@ -9,9 +9,14 @@ var encurtador = require('../routes/api/encurtador')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
+  var allowedOrigins = ['https://enc-it.firebaseapp.com', 'http://localhost:3000']
+  var origin = req.header.origin
+  if(allowedOrigins.indexOf(origin) > -1){
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://enc-it.firebaseapp.com');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://enc-it.firebaseapp.com');
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS, PUT, PATCH, DELETE');
