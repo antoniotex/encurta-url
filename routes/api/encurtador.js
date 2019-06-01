@@ -12,6 +12,10 @@ router.get('/', function(req, res){
 
 router.get('/get/:apelido', function(req, res){
   Encurtador.findOne({ apelido:  req.params.apelido}, (error, item) => {
+    if(error){
+      res.send(error)
+      return
+    }
     res.json(item)
   })
 })
