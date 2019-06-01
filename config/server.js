@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+path.require = require('path')
 
 var app = express()
 var encurtador = require('../routes/api/encurtador')
