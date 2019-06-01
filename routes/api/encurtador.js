@@ -19,7 +19,7 @@ router.get('/get/:apelido', function(req, res){
 router.post('/', function(req, res){
 
   const apelido = crypto.randomBytes(3).toString('hex');
-  urlEncurtada = `enc-it.herokuapp.com/${req.body.apelido ? req.body.apelido : apelido}`
+  urlEncurtada = `enc-it.firebaseapp.com/${req.body.apelido ? req.body.apelido : apelido}`
 
   const novoItem = new Encurtador({
     urlOriginal: req.body.urlOriginal,
