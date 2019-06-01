@@ -15,14 +15,14 @@ class App extends Component{
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     console.log(window.location)
     const id = window.location.pathname
     if(id !== "/"){
-      axios.get(`/api/encurtador/get${id}`).then(res => {
-        console.log(res.data.urlOriginal)
+      axios.get(`/api/encurtador/get/3f40b3`).then(res => {
         debugger
-        // window.location.href = res.data.urlOriginal
+        console.log(res.data)
+        window.location.href = res.data.urlOriginal
         
       })
       .catch(erro => console.log('Erro --> ', erro))
