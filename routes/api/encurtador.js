@@ -23,10 +23,11 @@ router.get('/get/:apelido', function(req, res){
 router.post('/', function(req, res){
 
   const apelido = crypto.randomBytes(3).toString('hex');
-  urlEncurtada = `enc-it.firebaseapp.com/${req.body.apelido ? req.body.apelido : apelido}`
+  const urlEncurtada = `enc-it.firebaseapp.com/${req.body.apelido ? req.body.apelido : apelido}`
+  const urlOriginal = req.body.urlOriginal
 
   const novoItem = new Encurtador({
-    urlOriginal: req.body.urlOriginal,
+    urlOriginal: urlOriginal.includes('http') ? urlOriginal : `https://${urlOriginal}`,
     apelido: req.body.apelido ? req.body.apelido : apelido,
     urlEncurtada: urlEncurtada
   })
