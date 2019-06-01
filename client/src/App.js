@@ -18,8 +18,10 @@ class App extends Component{
   componentWillMount(){
     console.log(window.location)
     const id = window.location.pathname
-    if(id !== '/'){
+    if(id !== "/"){
       axios.get(`/api/encurtador/get${id}`).then(res => {
+        console.log(res.data.urlOriginal)
+        debugger
         window.location.replace(res.data.urlOriginal)
         
       })
