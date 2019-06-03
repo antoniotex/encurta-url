@@ -35,7 +35,7 @@ router.post('/', function(req, res){
 
   const apelido = randomChar();
   const urlEncurtada = `enc-it.firebaseapp.com/${req.body.apelido ? req.body.apelido : apelido}`
-  const urlOriginal = req.body.urlOriginal
+  let urlOriginal = req.body.urlOriginal
   urlOriginal = urlOriginal.includes('http') ? urlOriginal : `https://${urlOriginal}`
 
   Encurtador.findOne({urlOriginal: urlOriginal}, (error, item) => {
