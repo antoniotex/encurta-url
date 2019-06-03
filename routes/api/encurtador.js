@@ -21,16 +21,29 @@ router.get('/get/:apelido', function(req, res){
 })
 
 router.post('/', function(req, res){
-  const apelido = crypto.randomBytes(3).toString('hex');
+  function randomChar(){
+    const id = crypto.randomBytes(3).toString('hex');
+    Encurtador.findOne({apelido: id}, (error, item) => {
+      if(item !== null){
+        randomChar()
+      }
+      else{
+        return
+      }
+    })
+  }
+
+  const apelido = randomChar();
   const urlEncurtada = `enc-it.firebaseapp.com/${req.body.apelido ? req.body.apelido : apelido}`
   const urlOriginal = req.body.urlOriginal
+  urlOriginal = urlOriginal.includes('http') ? urlOriginal : `https://${urlOriginal}`
 
   Encurtador.findOne({urlOriginal: urlOriginal}, (error, item) => {
     if(item !== null){
       res.json(item)
     }else{
       const novoItem = new Encurtador({
-        urlOriginal: urlOriginal.includes('http') ? urlOriginal : `https://${urlOriginal}`,
+        urlOriginal: urlOriginal,
         apelido: req.body.apelido ? req.body.apelido : apelido,
         urlEncurtada: urlEncurtada
       })
